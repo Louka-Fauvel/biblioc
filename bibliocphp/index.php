@@ -11,6 +11,9 @@
 <div class="container">
     <h1 class="text-center">Biblioc</h1>
     <div class="container">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a href="auteurs/index.php" class="btn btn-outline-primary">Auteur</a>
+        </div>
     </div>
 </div>
 

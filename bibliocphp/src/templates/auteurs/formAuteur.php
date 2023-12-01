@@ -78,3 +78,10 @@ if(isset($_POST['delete'])) {
     $auteurRepo->delete(intval($_POST['delete']));
 
 }
+
+function filterAuteurFirstname() {
+    echo '<form method="post">
+            <input class="form-control" type="text" id="firstnameFilter" name="firstnameFilter" placeholder="Prénom filtré">
+            <button type="submit" class="btn btn-warning">Filtrer</button>
+        </form>';
+}

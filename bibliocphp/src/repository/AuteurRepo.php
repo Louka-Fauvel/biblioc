@@ -10,7 +10,7 @@ class AuteurRepo {
 
     public function getAll(): array {
 
-        $statement = $this->database->getDatabase()->prepare("SELECT id, firstname, lastname FROM auteur LIMIT 10");
+        $statement = $this->database->getDatabase()->prepare("SELECT id, firstname, lastname FROM auteur LIMIT 100");
         $statement->execute();
         $auteurs = [];
 
@@ -52,6 +52,21 @@ class AuteurRepo {
 
         $statement = $this->database->getDatabase()->prepare("DELETE FROM auteur WHERE id = ?");
         $statement->execute([$id]);
+
+    }
+
+    public function getAllContainsFirstname($firstname): array {
+
+        $statement = $this->database->getDatabase()->prepare("SELECT id, firstname, lastname FROM auteur WHERE firstname LIKE ? LIMIT 100");
+        $statement->execute(["%".$firstname."%"]);
+        $auteurs = [];
+
+        while ($row = $statement->fetch()) {
+            $auteur = new Auteur($row['id'], $row['firstname'], $row['lastname']);
+            $auteurs[] = $auteur;
+        }
+
+        return  $auteurs;
 
     }
 
