@@ -19,7 +19,7 @@ require_once('../src/templates/auteurs/formAuteur.php')
 <div class="container">
     <h1 class="text-center">Les auteurs</h1>
     <div class="container">
-        <a href="../index.php" class="btn btn-outline-primary">Retour</a><br/><br/>
+        <a href="../" class="btn btn-outline-primary">Retour</a><br/><br/>
 
         <?php
 
