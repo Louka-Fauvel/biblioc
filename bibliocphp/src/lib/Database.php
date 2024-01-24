@@ -1,27 +1,45 @@
 <?php
-namespace lib;
+namespace src\lib;
 
+use Exception;
 use PDO;
 use PDOException;
 
-class Database {
+abstract class Database {
 
-    private $database;
+    protected static ?PDO $connection = null;
 
-    public function getDatabase() {
+    public static function get() {
+
+        if (!self::$connection) {
+			try {
+
+				self::$connection = self::createConnection();
+
+			} catch (PDOException $e) {
+
+				throw new Exception('Database ERROR');
+                
+			}
+		}
+
+		return self::$connection;
+    }
+
+    protected static function createConnection() {
 
         try {
 
-            $this->database = new PDO('mysql:host=localhost;dbname=biblioc;charset=utf8', 'root', '');
-            $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $database = new PDO('mysql:host=localhost;dbname=library;charset=utf8', 'root', '');
+            $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (PDOException $e) {
 
-            echo "Erreur de connexion : " . $e->getMessage();
+            echo "Erreur de connexion : " /*. $e->getMessage()*/;
 
         }
 
-        return $this->database;
+        return $database;
 
     }
 

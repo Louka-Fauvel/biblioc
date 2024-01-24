@@ -1,0 +1,16 @@
+{
+    "name": "stagiaire/bibliocphp",
+    "description": "Test Composer",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Louka-Fauvel",
+            "email": "73880235+Louka-Fauvel@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

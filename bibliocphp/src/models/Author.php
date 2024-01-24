@@ -1,7 +1,7 @@
 <?php
-namespace models;
+namespace src\models;
 
-class Auteur {
+class Author {
 
     private int $id;
     private string $firstname;
