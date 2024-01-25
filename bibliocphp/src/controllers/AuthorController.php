@@ -37,8 +37,7 @@ class AuthorController {
                     break;
                 case 'delete':
                     if(isset($_POST['delete'])) {
-    
-                        var_dump("Test");
+
                         $this->authorRepo->delete(intval($_POST['delete']));
                     
                     }
@@ -73,9 +72,8 @@ class AuthorController {
 
     }
 
-    public function ListAuthors() {
+    public function ListAuthors(AuthorController $authorController) {
 
-        $authorController = new AuthorController();
         $urlFilter = $this->urlFilter;
 
         foreach ($this->authors as $author) {
@@ -127,13 +125,12 @@ class AuthorController {
 
     }
 
-    public function Authors() {
+    public function Authors(AuthorController $authorController) {
 
-        $authorController = new AuthorController();
-
+        $authorController->FormAction();
         $authorController->FormCreateAuthor();
         $authorController->FormFilterAuthor();
-        $authorController->ListAuthors();
+        $authorController->ListAuthors($authorController);
 
     }
 

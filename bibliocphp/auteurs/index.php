@@ -4,7 +4,6 @@ use src\controllers\AuthorController;
 require '../vendor/autoload.php';
 
 $authorController = new AuthorController();
-$authorController->FormAction();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,7 +18,7 @@ $authorController->FormAction();
     <div class="container">
         <a href="../" class="btn btn-outline-primary">Retour</a><br/><br/>
 
-        <?php $authorController->Authors(); ?>
+        <?php $authorController->Authors($authorController); ?>
 
     </div>
 </div>
