@@ -1,6 +1,7 @@
 <?php
 namespace src\controllers;
 
+use src\models\Author;
 use src\repositories\AuthorRepo;
 
 class AuthorController {
@@ -8,9 +9,10 @@ class AuthorController {
     protected AuthorRepo $authorRepo;
     protected string $urlFilter;
     protected array $authors;
+    protected Author $author;
 
     public function __construct() {
-        $this->authorRepo = new AuthorRepo;
+        $this->authorRepo = new AuthorRepo();
         $this->urlFilter = "";
         $this->authors = $this->authorRepo->getAll();
     }
@@ -87,6 +89,34 @@ class AuthorController {
 
     }
 
+    public function Infos() {
+
+        if(isset($_GET['auteur']) && !empty($_GET['auteur'])) {
+
+            $id = intval($_GET['auteur']);
+            
+            if($id != 0) {
+
+                $this->author = $this->authorRepo->get($id);
+                $author = $this->author;
+                $my_array = array($author);
+                extract($my_array);
+                include __DIR__ . '/../components/author/infos.php';
+
+            } else {
+
+                header("Location: /auteurs");
+
+            }
+
+        } else {
+
+            header("Location: /auteurs");
+
+        }
+
+    }
+
     public function FormCreateAuthor() {
 
         if(isset($_POST['formCreateAuthor'])) {
@@ -131,6 +161,12 @@ class AuthorController {
         $authorController->FormCreateAuthor();
         $authorController->FormFilterAuthor();
         $authorController->ListAuthors($authorController);
+
+    }
+
+    public function Author(AuthorController $authorController) {
+
+        $authorController->Infos();
 
     }
 

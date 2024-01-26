@@ -1,5 +1,9 @@
 <?php
-require 'vendor/autoload.php';
+use src\controllers\BookController;
+
+require '../vendor/autoload.php';
+
+$bookController = new BookController();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,12 +14,12 @@ require 'vendor/autoload.php';
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">Biblioc</h1>
+    <h1 class="text-center">Les livres</h1>
     <div class="container">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <a href="/auteurs" class="btn btn-outline-primary">Auteurs</a>
-            <a href="/livres" class="btn btn-outline-primary">Livres</a>
-        </div>
+        <a href="../" class="btn btn-outline-primary">Retour</a><br/><br/>
+
+        <?php $bookController->Books($bookController); ?>
+
     </div>
 </div>
 
